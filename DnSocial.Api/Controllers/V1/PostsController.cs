@@ -1,7 +1,4 @@
-﻿using Dn.Domain.Models;
-using Microsoft.AspNetCore.Mvc;
-
-namespace DnSocial.Api.Controllers.V1
+﻿namespace DnSocial.Api.Controllers.V1
 {    
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
