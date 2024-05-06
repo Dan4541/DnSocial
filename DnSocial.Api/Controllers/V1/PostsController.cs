@@ -9,8 +9,7 @@
         [Route("{id}")]
         public IActionResult GetById(int id)
         {
-            var post = new Post { Id = id, Text = "Hello World!" };
-            return Ok(post);
+            return Ok();
         }
     }
 }

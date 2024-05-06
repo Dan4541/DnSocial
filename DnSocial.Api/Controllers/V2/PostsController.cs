@@ -1,4 +1,4 @@
-﻿using Dn.Domain.Models;
+﻿using Dn.Domain.Aggregates.PostAggregate;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DnSocial.Api.Controllers.V2
@@ -12,8 +12,7 @@ namespace DnSocial.Api.Controllers.V2
         [Route("{id}")]
         public IActionResult GetById(int id)
         {
-            var post = new Post { Id = id, Text = "Hello Universe!" };
-            return Ok(post);
+            return Ok();
         }
     }
 }

@@ -5,7 +5,7 @@
 //global using DnSocial.Api.Contracts.UserProfile.Responses;
 //global using DnSocial.Application.UserProfiles.Commands;
 global using System.ComponentModel.DataAnnotations;
-global using Dn.Domain.Models;
+global using Dn.Domain.Aggregates;
 //global using DnSocial.Api.Contracts.Common;
 //global using DnSocial.Application.Enums;
 //global using DnSocial.Application.Models;

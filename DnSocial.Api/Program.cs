@@ -1,5 +1,3 @@
-using DnSocial.Api.Extentions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.RegisterServices(typeof(Program));
