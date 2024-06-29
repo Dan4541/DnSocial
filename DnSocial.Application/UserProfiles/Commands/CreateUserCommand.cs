@@ -1,9 +1,10 @@
 ﻿using Dn.Domain.Aggregates.UserProfileAggregate;
+using DnSocial.Application.Models;
 using MediatR;
 
 namespace DnSocial.Application.UserProfiles.Commands
 {
-    public class CreateUserCommand : IRequest<UserProfile>
+    public class CreateUserCommand : IRequest<OperationResult<UserProfile>>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

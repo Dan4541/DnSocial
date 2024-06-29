@@ -1,10 +1,15 @@
-﻿namespace DnSocial.Api.Registrars
+﻿using DnSocial.Api.Filters;
+
+namespace DnSocial.Api.Registrars
 {
     public class MvcRegistrar : IWebApplicationBuilderRegistrar
     {
         public void RegisterServices(WebApplicationBuilder builder)
         {
-            builder.Services.AddControllers();
+            builder.Services.AddControllers(config =>
+            {
+                config.Filters.Add(typeof(DnSocialExceptionHandler));
+            });
 
             builder.Services.AddApiVersioning(config =>
             {

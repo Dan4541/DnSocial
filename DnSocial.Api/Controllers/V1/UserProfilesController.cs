@@ -2,6 +2,7 @@
 using DnSocial.Api.Contracts.Common;
 using DnSocial.Api.Contracts.UserProfile.Reponses;
 using DnSocial.Api.Contracts.UserProfile.Requests;
+using DnSocial.Api.Filters;
 using DnSocial.Application.Enums;
 using DnSocial.Application.UserProfiles.Commands;
 using DnSocial.Application.UserProfiles.Queries;
@@ -26,20 +27,22 @@ namespace DnSocial.Api.Controllers.V1
         [HttpGet]
         public async Task<IActionResult> GetAllProfiles()
         {
+            throw new NotImplementedException("Testing the 500 Error");
             var query = new GetAllUserProfiles();
             var response = await _mediator.Send(query);
-            var profiles = _mapper.Map<List<UserProfileResponse>>(response);
+            var profiles = _mapper.Map<List<UserProfileResponse>>(response.Payload);
             return Ok(profiles);
         }
 
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> CreateUserProfile([FromBody] UserProfileCreateUpdate profile)
         {
             var command = _mapper.Map<CreateUserCommand>(profile);
             var response = await _mediator.Send(command);
-            var userProfile = _mapper.Map<UserProfileResponse>(response);
+            var userProfile = _mapper.Map<UserProfileResponse>(response.Payload);
 
-            return CreatedAtAction(nameof(GetUserProfileById), new {id = response.UserProfileId}, userProfile);
+            return CreatedAtAction(nameof(GetUserProfileById), new {id = userProfile.UserProfileId}, userProfile);
         }
 
         [Route(ApiRoutes.UserProfiles.IdRoute)]
@@ -49,14 +52,16 @@ namespace DnSocial.Api.Controllers.V1
             var query = new GetUserProfileById { UserProfileId = Guid.Parse(id) };
             var response = await _mediator.Send(query);
 
-            if(response is null) return NotFound($"No User with Profile ID {id} found");
+            if (response.IsError)
+                return HandleErrorResponse(response.Errors);
 
-            var userProfile = _mapper.Map<UserProfileResponse> (response);
+            var userProfile = _mapper.Map<UserProfileResponse> (response.Payload);
             return Ok(userProfile);
         }
 
         [HttpPatch]
         [Route(ApiRoutes.UserProfiles.IdRoute)]
+        [ValidateModel]
         public async Task<IActionResult> UpdateUserProfile(string id, UserProfileCreateUpdate updatedProfile)
         {
             var command = _mapper.Map<UpdateUserProfileBasicInfo>(updatedProfile);
@@ -73,7 +78,7 @@ namespace DnSocial.Api.Controllers.V1
             var command = new DeleteUserProfile() { UserProfileId = Guid.Parse(id) };
             var response = await _mediator.Send(command);
 
-            return NoContent();
+            return response.IsError ? HandleErrorResponse(response.Errors) : NoContent();
         }
 
 

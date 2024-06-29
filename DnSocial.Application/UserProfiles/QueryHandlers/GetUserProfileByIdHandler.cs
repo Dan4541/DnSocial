@@ -1,4 +1,5 @@
 ﻿using Dn.Domain.Aggregates.UserProfileAggregate;
+using DnSocial.Application.Models;
 using DnSocial.Application.UserProfiles.Queries;
 using DnSocial.Dal;
 using MediatR;
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DnSocial.Application.UserProfiles.QueryHandlers
 {
-    internal class GetUserProfileByIdHandler : IRequestHandler<GetUserProfileById, UserProfile>
+    internal class GetUserProfileByIdHandler : IRequestHandler<GetUserProfileById, OperationResult<UserProfile>>
     {
         private readonly DataContext _ctx;
 
@@ -15,9 +16,26 @@ namespace DnSocial.Application.UserProfiles.QueryHandlers
             _ctx = ctx;
         }
 
-        public async Task<UserProfile> Handle(GetUserProfileById request, CancellationToken cancellationToken)
+        public async Task<OperationResult<UserProfile>> Handle(GetUserProfileById request, CancellationToken cancellationToken)
         {
-            return await _ctx.UserProfiles.FirstOrDefaultAsync(up => up.UserProfileId == request.UserProfileId);
+            var result = new OperationResult<UserProfile>();
+            var profile = await _ctx.UserProfiles.FirstOrDefaultAsync(up => up.UserProfileId == request.UserProfileId);
+
+            if (profile is null)
+            {
+                result.IsError = true;
+                var error = new Error
+                {
+                    Code = Enums.ErrorCode.NotFound,
+                    Message = $"No User Profile with ID {request.UserProfileId} found."
+                };
+                result.Errors.Add(error);
+                return result;
+            }
+
+            result.Payload = profile;
+
+            return result;
         }
     }
 }
