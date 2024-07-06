@@ -1,10 +1,6 @@
-﻿using Dn.Domain.Aggregates.Post;
-using Dn.Domain.Aggregates.UserProfileAggregate;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Dn.Domain.Aggregates.UserProfileAggregate;
+using Dn.Domain.Validators.PostValidators;
+using Dn.Domain.Exceptions;
 
 namespace Dn.Domain.Aggregates.PostAggregate
 {
@@ -29,19 +25,38 @@ namespace Dn.Domain.Aggregates.PostAggregate
         //Factory method
         public static Post CreatePost(Guid userProfileId, string textContent)
         {
-            return new Post
+            var validator = new PostValidator();
+
+            var objectToValidate = new Post
             {
                 UserProfileId = userProfileId,
                 TextContent = textContent,
                 CreatedDate = DateTime.UtcNow,
                 LastModified = DateTime.UtcNow
             };
+
+            var validationResult = validator.Validate(objectToValidate);
+            if(validationResult.IsValid) return objectToValidate;
+
+            var exception = new PostNotValidException("Post is not valid");
+            
+            validationResult.Errors.ForEach(vr => exception.ValidationErrors.Add(vr.ErrorMessage));
+
+            throw exception;
         }
 
 
         //Public methods
+        /*Updates the post text*/
         public void UpdatePostText(string newText)
         {
+            if (string.IsNullOrWhiteSpace(newText))
+            {
+                var exception = new PostNotValidException("Cannot update post. The text is not valid.");
+                exception.ValidationErrors.Add("The provided text is either null or only contains white space.");
+                throw exception;
+            }
+
             TextContent = newText;
             LastModified = DateTime.UtcNow;
         }

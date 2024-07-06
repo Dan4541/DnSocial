@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Dn.Domain.Exceptions;
+using Dn.Domain.Validators.UserProfileValidators;
 
 namespace Dn.Domain.Aggregates.UserProfileAggregate
 {
@@ -21,8 +18,9 @@ namespace Dn.Domain.Aggregates.UserProfileAggregate
         public static BasicInfo CreateBasicInfo(string FirstName, string LastName, string EmailAddress,
             string Phone, DateTime DateOfBirth, string CurrentCity)
         {
-            //TO DO: Add validation, error handling strategies, error notification strategies
-            return new BasicInfo()
+            var validator = new BasicInfoValidator();
+            
+            var objToValidate = new BasicInfo()
             {
                 FirstName = FirstName,
                 LastName = LastName,
@@ -31,6 +29,19 @@ namespace Dn.Domain.Aggregates.UserProfileAggregate
                 DateOfBirth = DateOfBirth,
                 CurrentCity = CurrentCity
             };
+
+            var validationResult = validator.Validate(objToValidate);
+
+            if (validationResult.IsValid) return objToValidate;
+
+            var exception = new UserProfileNotValidException("The user profile is no valid.");
+
+            foreach (var error in validationResult.Errors)
+            {
+                exception.ValidationErrors.Add(error.ErrorMessage);
+            }
+
+            throw exception;
         }
 
         

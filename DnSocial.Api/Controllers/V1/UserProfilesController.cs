@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using DnSocial.Api.Contracts.Common;
 using DnSocial.Api.Contracts.UserProfile.Reponses;
 using DnSocial.Api.Contracts.UserProfile.Requests;
 using DnSocial.Api.Filters;
-using DnSocial.Application.Enums;
 using DnSocial.Application.UserProfiles.Commands;
 using DnSocial.Application.UserProfiles.Queries;
 using MediatR;
@@ -27,7 +25,6 @@ namespace DnSocial.Api.Controllers.V1
         [HttpGet]
         public async Task<IActionResult> GetAllProfiles()
         {
-            throw new NotImplementedException("Testing the 500 Error");
             var query = new GetAllUserProfiles();
             var response = await _mediator.Send(query);
             var profiles = _mapper.Map<List<UserProfileResponse>>(response.Payload);
@@ -42,11 +39,13 @@ namespace DnSocial.Api.Controllers.V1
             var response = await _mediator.Send(command);
             var userProfile = _mapper.Map<UserProfileResponse>(response.Payload);
 
-            return CreatedAtAction(nameof(GetUserProfileById), new {id = userProfile.UserProfileId}, userProfile);
+            return response.IsError ? HandleErrorResponse(response.Errors) : CreatedAtAction(nameof(GetUserProfileById), 
+                new { id = userProfile.UserProfileId }, userProfile);
         }
 
         [Route(ApiRoutes.UserProfiles.IdRoute)]
         [HttpGet]
+        [ValidateGuid("id")]
         public async Task<IActionResult> GetUserProfileById(string id)
         {
             var query = new GetUserProfileById { UserProfileId = Guid.Parse(id) };
@@ -62,6 +61,7 @@ namespace DnSocial.Api.Controllers.V1
         [HttpPatch]
         [Route(ApiRoutes.UserProfiles.IdRoute)]
         [ValidateModel]
+        [ValidateGuid("id")]
         public async Task<IActionResult> UpdateUserProfile(string id, UserProfileCreateUpdate updatedProfile)
         {
             var command = _mapper.Map<UpdateUserProfileBasicInfo>(updatedProfile);
@@ -73,6 +73,7 @@ namespace DnSocial.Api.Controllers.V1
 
         [HttpDelete]
         [Route(ApiRoutes.UserProfiles.IdRoute)]
+        [ValidateGuid("id")]
         public async Task<IActionResult> DeleteUserProfile(string id)
         {
             var command = new DeleteUserProfile() { UserProfileId = Guid.Parse(id) };

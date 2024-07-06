@@ -20,10 +20,14 @@ namespace DnSocial.Api.Filters
 
                 foreach (var error in errors)
                 {
-                    apiError.Errors.Add(error.Value.ToString());
+                    foreach (var inner in error.Value.Errors)
+                    {
+                        apiError.Errors.Add(inner.ErrorMessage);
+                    }
+                    
                 }
 
-                context.Result = new JsonResult(apiError) { StatusCode = 400 };
+                context.Result = new BadRequestObjectResult(apiError);
                 //TO DO: Make sure asp.net core doesn't override our action result body
             }
         }

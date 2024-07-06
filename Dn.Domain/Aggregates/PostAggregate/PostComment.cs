@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Dn.Domain.Exceptions;
+using Dn.Domain.Validators.PostValidators;
 
 namespace Dn.Domain.Aggregates.PostAggregate
 {
@@ -20,7 +17,9 @@ namespace Dn.Domain.Aggregates.PostAggregate
         //Factory method
         public static PostComment CreatePostComment(Guid postId, string text, Guid userProfileId)
         {
-            return new PostComment()
+            var validator = new PostCommentValidator();
+
+            var objectToValidate =  new PostComment()
             {
                 PostId = postId,
                 Text = text,
@@ -28,6 +27,15 @@ namespace Dn.Domain.Aggregates.PostAggregate
                 DateCreated = DateTime.UtcNow,
                 LastModified = DateTime.UtcNow
             };
+
+            var validationResult = validator.Validate(objectToValidate);
+            if(validationResult.IsValid) return objectToValidate;
+
+            var exception = new PostCommentNoValidException("Post comment is no valid.");
+
+            validationResult.Errors.ForEach(vr => exception.ValidationErrors.Add(vr.ErrorMessage));
+
+            throw exception;
         }
 
         //Public methods

@@ -1,4 +1,5 @@
 ﻿using Dn.Domain.Aggregates.UserProfileAggregate;
+using Dn.Domain.Exceptions;
 using DnSocial.Application.Enums;
 using DnSocial.Application.Models;
 using DnSocial.Application.UserProfiles.Commands;
@@ -43,6 +44,20 @@ namespace DnSocial.Application.UserProfiles.CommandHandlers
 
                 result.Payload = userProfile;
 
+                return result;
+            }
+            catch (UserProfileNotValidException ex)
+            {
+                result.IsError = true;
+                ex.ValidationErrors.ForEach(x => {
+
+                    var error = new Error
+                    {
+                        Code = ErrorCode.ValidationError,
+                        Message = $"{ex.Message}"
+                    };
+                    result.Errors.Add(error);
+                });
                 return result;
             }
             catch (Exception ex)
