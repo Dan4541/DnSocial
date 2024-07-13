@@ -27,9 +27,4 @@
     <ProjectReference Include="..\DnSocial.Dal\DnSocial.Dal.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Contracts\Posts\Responses\" />
-    <Folder Include="Contracts\Posts\Requests\" />
-  </ItemGroup>
-
 </Project>

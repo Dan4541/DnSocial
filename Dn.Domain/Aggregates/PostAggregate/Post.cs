@@ -23,6 +23,14 @@ namespace Dn.Domain.Aggregates.PostAggregate
         public IEnumerable<PostInteraction> Interaction { get { return _interactions; } }
 
         //Factory method
+
+        /// <summary>
+        /// Create a new post instance
+        /// </summary>
+        /// <param name="userProfileId">User Profile</param>
+        /// <param name="textContent">Post Content</param>
+        /// <returns><see cref="Post"/></returns>
+        /// <exception cref="PostNotValidException"></exception>
         public static Post CreatePost(Guid userProfileId, string textContent)
         {
             var validator = new PostValidator();

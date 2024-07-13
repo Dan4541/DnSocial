@@ -34,7 +34,6 @@ namespace DnSocial.Application.UserProfiles.CommandHandlers
 
                 result.Payload = userProfile;
 
-                return result;
             }
             catch (UserProfileNotValidException ex) 
             {
@@ -45,7 +44,6 @@ namespace DnSocial.Application.UserProfiles.CommandHandlers
                     Message = $"{ex.Message}" };
                     result.Errors.Add(error);
                 });
-                return result;
             }
             catch (Exception e)
             {
@@ -54,9 +52,9 @@ namespace DnSocial.Application.UserProfiles.CommandHandlers
                     Message = $"{e.Message}"};
                 result.IsError = true;
                 result.Errors.Add(error);
-                return result;
             }
-            
+
+            return result;
         }
     }
 }
