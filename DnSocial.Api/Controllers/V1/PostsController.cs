@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using DnSocial.Api.Contracts.Common;
 using DnSocial.Api.Contracts.Posts.Requests;
 using DnSocial.Api.Contracts.Posts.Responses;
 using DnSocial.Api.Filters;
@@ -92,6 +93,57 @@ namespace DnSocial.Api.Controllers.V1
             return result.IsError ? HandleErrorResponse(result.Errors) : NoContent();
         }
 
+        [HttpGet]
+        [Route(ApiRoutes.Posts.PostComments)]
+        [ValidateGuid("postId")]
+        public async Task<IActionResult> GetCommentsByPostId(string postId)
+        {
+            var query = new GetPostComments()
+            {
+                PostId = Guid.Parse(postId)
+            };
+
+            var result = await _mediator.Send(query);
+            if (result.IsError) HandleErrorResponse(result.Errors);
+
+            var comments = _mapper.Map<List<PostCommentResponse>>(result.Payload);
+            return Ok(comments);
+        }
+
+        [HttpPost]
+        [Route(ApiRoutes.Posts.PostComments)]
+        [ValidateGuid("postId")]
+        [ValidateModel]
+        public async Task<IActionResult> AddCommentToPost(string postId, [FromBody] PostCommentCreate comment)
+        {
+            var isValidGuid = Guid.TryParse(comment.UserProfileId, out var userProfileId);
+
+            if (!isValidGuid)
+            {
+                var apiError = new ErrorResponse();
+
+                apiError.StatusCode = 400;
+                apiError.StatusPhrase = "Bad Request";
+                apiError.Timestamp = DateTime.Now;
+                apiError.Errors.Add("Provided user profile ID is not valid format");
+                return BadRequest();
+            }
+
+
+            var command = new AddPostComment()
+            {
+                PostId = Guid.Parse(postId),
+                UserProfileId = userProfileId,
+                CommentText = comment.Text
+            };
+
+            var result = await _mediator.Send(command);
+            if(result.IsError) return HandleErrorResponse(result.Errors);
+
+            var newComment = _mapper.Map<PostCommentResponse>(result.Payload);
+
+            return Ok(newComment);
+        }
 
     }
 }
