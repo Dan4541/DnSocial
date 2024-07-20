@@ -1,6 +1,4 @@
-﻿using DnSocial.Api.Filters;
-
-namespace DnSocial.Api.Registrars
+﻿namespace DnSocial.Api.Registrars
 {
     public class MvcRegistrar : IWebApplicationBuilderRegistrar
     {

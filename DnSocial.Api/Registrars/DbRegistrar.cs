@@ -1,7 +1,4 @@
-﻿using DnSocial.Dal;
-using Microsoft.EntityFrameworkCore;
-
-namespace DnSocial.Api.Registrars
+﻿namespace DnSocial.Api.Registrars
 {
     public class DbRegistrar : IWebApplicationBuilderRegistrar
     {

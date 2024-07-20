@@ -1,7 +1,4 @@
-﻿using Dn.Domain.Aggregates.PostAggregate;
-using Microsoft.AspNetCore.Mvc;
-
-namespace DnSocial.Api.Controllers.V2
+﻿namespace DnSocial.Api.Controllers.V2
 {
     [ApiVersion("2.0")]
     [Route("api/v{version:apiVersion}/[controller]")]

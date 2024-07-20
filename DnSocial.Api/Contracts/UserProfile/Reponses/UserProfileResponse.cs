@@ -1,6 +1,4 @@
-﻿using Dn.Domain.Aggregates.UserProfileAggregate;
-
-namespace DnSocial.Api.Contracts.UserProfile.Reponses
+﻿namespace DnSocial.Api.Contracts.UserProfile.Reponses
 {
     public record UserProfileResponse
     {

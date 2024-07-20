@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DnSocial.Api.Contracts.Common
+﻿namespace DnSocial.Api.Contracts.Common
 {
     public class ErrorResponse
     {

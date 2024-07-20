@@ -1,14 +1,4 @@
-﻿using System;
-using AutoMapper;
-using DnSocial.Api.Contracts.Common;
-using DnSocial.Api.Contracts.Posts.Requests;
-using DnSocial.Api.Contracts.Posts.Responses;
-using DnSocial.Api.Filters;
-using DnSocial.Application.Posts.Commands;
-using DnSocial.Application.Posts.Queries;
-using MediatR;
-
-namespace DnSocial.Api.Controllers.V1
+﻿namespace DnSocial.Api.Controllers.V1
 {    
     [ApiVersion("1.0")]
     [Route(ApiRoutes.BaseRoute)]
@@ -38,7 +28,7 @@ namespace DnSocial.Api.Controllers.V1
         public async Task<IActionResult> GetById(string id)
         {
             var postId = Guid.Parse(id);
-            var query = new GetPostById() { PostId = postId};
+            var query = new GetPostById() { PostId = postId };
             var result = await _mediator.Send(query);
             var mapped = _mapper.Map<PostResponse>(result.Payload);
 

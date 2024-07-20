@@ -1,6 +1,6 @@
 ﻿using Dn.Domain.Aggregates.UserProfileAggregate;
-using Dn.Domain.Validators.PostValidators;
 using Dn.Domain.Exceptions;
+using Dn.Domain.Validators.PostValidators;
 
 namespace Dn.Domain.Aggregates.PostAggregate
 {

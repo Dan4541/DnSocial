@@ -1,12 +1,4 @@
-﻿using AutoMapper;
-using DnSocial.Api.Contracts.UserProfile.Reponses;
-using DnSocial.Api.Contracts.UserProfile.Requests;
-using DnSocial.Api.Filters;
-using DnSocial.Application.UserProfiles.Commands;
-using DnSocial.Application.UserProfiles.Queries;
-using MediatR;
-
-namespace DnSocial.Api.Controllers.V1
+﻿namespace DnSocial.Api.Controllers.V1
 {
     [ApiVersion("1.0")]
     [Route(ApiRoutes.BaseRoute)]

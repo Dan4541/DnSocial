@@ -1,9 +1,4 @@
-﻿using DnSocial.Api.Contracts.Common;
-using DnSocial.Application.Enums;
-using DnSocial.Application.Models;
-using Microsoft.AspNetCore.Mvc;
-
-namespace DnSocial.Api.Filters
+﻿namespace DnSocial.Api.Filters
 {
     public class ValidateModelAttribute : ActionFilterAttribute
     {

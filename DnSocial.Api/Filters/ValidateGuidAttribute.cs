@@ -1,7 +1,4 @@
-﻿using DnSocial.Api.Contracts.Common;
-using Microsoft.AspNetCore.Mvc;
-
-namespace DnSocial.Api.Filters
+﻿namespace DnSocial.Api.Filters
 {
     public class ValidateGuidAttribute : ActionFilterAttribute
     {

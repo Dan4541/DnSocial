@@ -1,7 +1,4 @@
-﻿using DnSocial.Application.UserProfiles.Queries;
-using MediatR;
-
-namespace DnSocial.Api.Registrars
+﻿namespace DnSocial.Api.Registrars
 {
     public class BogardRegistrar : IWebApplicationBuilderRegistrar
     {
