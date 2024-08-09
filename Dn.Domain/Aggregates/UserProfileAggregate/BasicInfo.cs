@@ -14,7 +14,17 @@ namespace Dn.Domain.Aggregates.UserProfileAggregate
         public DateTime DateOfBirth { get; private set; }
         public string CurrentCity { get; private set; }
 
-        //Factory method
+        /// <summary>
+        /// Creates a new BasicInfo instance
+        /// </summary>
+        /// <param name="firstName">First name</param>
+        /// <param name="lastName">Last name</param>
+        /// <param name="emailAddress">Emnail address</param>
+        /// <param name="phone">Phone</param>
+        /// <param name="dateOfBirth">Date of Birth</param>
+        /// <param name="currentCity">Current city</param>
+        /// <returns><see cref="BasicInfo"/></returns>
+        /// <exception cref="UserProfileNotValidException"></exception>
         public static BasicInfo CreateBasicInfo(string FirstName, string LastName, string EmailAddress,
             string Phone, DateTime DateOfBirth, string CurrentCity)
         {

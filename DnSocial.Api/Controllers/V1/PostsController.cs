@@ -94,7 +94,7 @@
             };
 
             var result = await _mediator.Send(query);
-            if (result.IsError) HandleErrorResponse(result.Errors);
+            if (result.IsError) return HandleErrorResponse(result.Errors);
 
             var comments = _mapper.Map<List<PostCommentResponse>>(result.Payload);
             return Ok(comments);

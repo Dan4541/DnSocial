@@ -1,5 +1,4 @@
-﻿using System;
-using Dn.Domain.Aggregates.UserProfileAggregate;
+﻿using Dn.Domain.Aggregates.UserProfileAggregate;
 using FluentValidation;
 
 namespace Dn.Domain.Validators.UserProfileValidators
@@ -24,7 +23,7 @@ namespace Dn.Domain.Validators.UserProfileValidators
 
             RuleFor(info => info.DateOfBirth)
                 .InclusiveBetween(new DateTime(DateTime.Now.AddYears(-125).Ticks),
-                new DateTime(DateTime.Now.AddYears(-80).Ticks))
+                new DateTime(DateTime.Now.AddYears(-18).Ticks))
                 .WithMessage("Age needs to be between 18 and 125 years old.");
 
         }

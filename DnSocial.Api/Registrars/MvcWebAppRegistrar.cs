@@ -19,6 +19,7 @@
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication(); //added for jwt
             app.UseAuthorization();
 
             app.MapControllers();
