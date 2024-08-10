@@ -1,20 +1,4 @@
-﻿using AutoMapper;
-using DnSocial.Application.Enums;
-using DnSocial.Application.Identity.Commands;
-using DnSocial.Application.Models;
-using DnSocial.Application.Options;
-using DnSocial.Dal;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Security.Principal;
-using System.Text;
-
-namespace DnSocial.Application.Identity.Handlers
+﻿namespace DnSocial.Application.Identity.Handlers
 {
     public class LoginCommandHandler : IRequestHandler<LoginCommand, OperationResult<string>>
     {

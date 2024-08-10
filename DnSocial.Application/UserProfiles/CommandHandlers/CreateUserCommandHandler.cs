@@ -1,13 +1,4 @@
-﻿using AutoMapper;
-using Dn.Domain.Aggregates.UserProfileAggregate;
-using Dn.Domain.Exceptions;
-using DnSocial.Application.Enums;
-using DnSocial.Application.Models;
-using DnSocial.Application.UserProfiles.Commands;
-using DnSocial.Dal;
-using MediatR;
-
-namespace DnSocial.Application.UserProfiles.CommandHandlers
+﻿namespace DnSocial.Application.UserProfiles.CommandHandlers
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, OperationResult<UserProfile>>
     {

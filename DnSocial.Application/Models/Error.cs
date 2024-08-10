@@ -1,11 +1,4 @@
-﻿using DnSocial.Application.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DnSocial.Application.Models
+﻿namespace DnSocial.Application.Models
 {
     public class Error
     {

@@ -1,9 +1,4 @@
-﻿using Dn.Domain.Aggregates.PostAggregate;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-
-namespace DnSocial.Dal.Configurations
+﻿namespace DnSocial.Dal.Configurations
 {
     internal class PostCommentConfig : IEntityTypeConfiguration<PostComment>
     {

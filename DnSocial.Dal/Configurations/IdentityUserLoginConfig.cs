@@ -1,8 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace DnSocial.Dal.Configurations
+﻿namespace DnSocial.Dal.Configurations
 {
     internal class IdentityUserLoginConfig : IEntityTypeConfiguration<IdentityUserLogin<string>>
     {

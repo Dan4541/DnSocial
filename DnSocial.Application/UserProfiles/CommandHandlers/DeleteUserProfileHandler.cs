@@ -1,16 +1,4 @@
-﻿using Dn.Domain.Aggregates.UserProfileAggregate;
-using DnSocial.Application.Models;
-using DnSocial.Application.UserProfiles.Commands;
-using DnSocial.Dal;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DnSocial.Application.UserProfiles.CommandHandlers
+﻿namespace DnSocial.Application.UserProfiles.CommandHandlers
 {
     internal class DeleteUserProfileHandler : IRequestHandler<DeleteUserProfile, OperationResult<UserProfile>>
     {

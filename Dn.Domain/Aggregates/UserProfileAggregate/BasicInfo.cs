@@ -1,7 +1,4 @@
-﻿using Dn.Domain.Exceptions;
-using Dn.Domain.Validators.UserProfileValidators;
-
-namespace Dn.Domain.Aggregates.UserProfileAggregate
+﻿namespace Dn.Domain.Aggregates.UserProfileAggregate
 {
     public class BasicInfo
     {

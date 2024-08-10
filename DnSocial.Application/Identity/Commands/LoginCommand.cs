@@ -1,7 +1,4 @@
-﻿using DnSocial.Application.Models;
-using MediatR;
-
-namespace DnSocial.Application.Identity.Commands
+﻿namespace DnSocial.Application.Identity.Commands
 {
     public class LoginCommand : IRequest<OperationResult<string>>
     {

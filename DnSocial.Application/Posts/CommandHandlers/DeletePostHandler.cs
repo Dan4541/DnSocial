@@ -1,12 +1,4 @@
-﻿using Dn.Domain.Aggregates.PostAggregate;
-using DnSocial.Application.Enums;
-using DnSocial.Application.Models;
-using DnSocial.Application.Posts.Commands;
-using DnSocial.Dal;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-
-namespace DnSocial.Application.Posts.CommandHandlers
+﻿namespace DnSocial.Application.Posts.CommandHandlers
 {
     public class DeletePostHandler : IRequestHandler<DeletePost, OperationResult<Post>>
     {

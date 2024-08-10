@@ -1,10 +1,4 @@
-﻿using Dn.Domain.Aggregates.PostAggregate;
-using Dn.Domain.Aggregates.UserProfileAggregate;
-using DnSocial.Dal.Configurations;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-
-namespace DnSocial.Dal
+﻿namespace DnSocial.Dal
 {
     public class DataContext : IdentityDbContext
     {

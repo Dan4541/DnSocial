@@ -1,12 +1,4 @@
-﻿using Dn.Domain.Aggregates.PostAggregate;
-using DnSocial.Application.Enums;
-using DnSocial.Application.Models;
-using DnSocial.Application.Posts.Queries;
-using DnSocial.Dal;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-
-namespace DnSocial.Application.Posts.QueryHandlers
+﻿namespace DnSocial.Application.Posts.QueryHandlers
 {
     public class GetPostByIdHandler : IRequestHandler<GetPostById, OperationResult<Post>>
     {

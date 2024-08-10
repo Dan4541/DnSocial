@@ -1,11 +1,4 @@
-﻿using Dn.Domain.Aggregates.UserProfileAggregate;
-using DnSocial.Application.Models;
-using DnSocial.Application.UserProfiles.Queries;
-using DnSocial.Dal;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-
-namespace DnSocial.Application.UserProfiles.QueryHandlers
+﻿namespace DnSocial.Application.UserProfiles.QueryHandlers
 {
     internal class GetUserProfileByIdHandler : IRequestHandler<GetUserProfileById, OperationResult<UserProfile>>
     {

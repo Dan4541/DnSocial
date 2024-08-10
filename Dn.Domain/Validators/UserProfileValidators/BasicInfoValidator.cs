@@ -1,7 +1,4 @@
-﻿using Dn.Domain.Aggregates.UserProfileAggregate;
-using FluentValidation;
-
-namespace Dn.Domain.Validators.UserProfileValidators
+﻿namespace Dn.Domain.Validators.UserProfileValidators
 {
     public class BasicInfoValidator : AbstractValidator<BasicInfo>
     {

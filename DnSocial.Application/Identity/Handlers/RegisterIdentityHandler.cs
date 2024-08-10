@@ -1,19 +1,4 @@
-﻿using Dn.Domain.Aggregates.UserProfileAggregate;
-using Dn.Domain.Exceptions;
-using DnSocial.Application.Enums;
-using DnSocial.Application.Identity.Commands;
-using DnSocial.Application.Models;
-using DnSocial.Application.Options;
-using DnSocial.Dal;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-
-namespace DnSocial.Application.Identity.Handlers
+﻿namespace DnSocial.Application.Identity.Handlers
 {
     public class RegisterIdentityHandler : IRequestHandler<RegisterIdentity, OperationResult<string>>
     {

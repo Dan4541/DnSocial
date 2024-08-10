@@ -1,7 +1,4 @@
-﻿using Dn.Domain.Aggregates.PostAggregate;
-using FluentValidation;
-
-namespace Dn.Domain.Validators.PostValidators
+﻿namespace Dn.Domain.Validators.PostValidators
 {
     public class PostCommentValidator : AbstractValidator<PostComment>
     {

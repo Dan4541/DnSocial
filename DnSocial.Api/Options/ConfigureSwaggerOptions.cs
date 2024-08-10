@@ -1,6 +1,4 @@
-﻿
-
-namespace DnSocial.Api.Options
+﻿namespace DnSocial.Api.Options
 {
     public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
     {
