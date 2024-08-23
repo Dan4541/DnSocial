@@ -19,3 +19,5 @@ global using DnSocial.Application.Posts.Commands;
 global using Dn.Domain.Aggregates.PostAggregate;
 global using DnSocial.Application.Posts.Queries;
 global using DnSocial.Application.UserProfiles.Queries;
+global using DnSocial.Application.Services;
+global using Microsoft.EntityFrameworkCore.Storage;

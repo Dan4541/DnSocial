@@ -30,3 +30,4 @@ global using Microsoft.AspNetCore.Identity;
 global using DnSocial.Api.Contracts.Identity;
 global using DnSocial.Application.Identity.Commands;
 global using Microsoft.AspNetCore.Authorization;
+global using DnSocial.Application.Services;
